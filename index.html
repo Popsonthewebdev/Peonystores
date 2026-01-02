@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peony Stores</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    header h1 span {
+      font-size: clamp(48px, 8vw, 110px);
+      font-weight: 700;
+      background-image: url("images/back.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 6px 6px 12px rgba(0,0,0,0.4);
+      letter-spacing: 4px;
+      display: inline-block;
+    }
+
+    header .tagline {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      text-align: center;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* ===== BUTTON ===== */
+    .btn {
+      display: inline-block;
+      padding: 14px 40px;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 600px) {
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1><span>PEONY STORES</span></h1>
+    <p class="tagline">Quality Hair & Beauty Products</p>
+  </header>
+
+  <section class="hero">
+    <p>
+      Welcome to Peony Stores. We offer a wide variety of beauty essentials including
+      face and body care products, masks, hair conditioners, creams, soaps,
+      extensions, hair tools, unisex wear, bags, and much more.
+      Click the button below to explore our collection.
+    </p>
+
+    <a href="Shop.html" class="btn">Shop Now</a>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log("Welcome to PEONY STORES!");
+    });
+  </script>
+
+</body>
+</html>
