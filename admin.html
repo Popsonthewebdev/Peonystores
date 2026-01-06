@@ -160,42 +160,60 @@ categorySelect.addEventListener("change", ()=>{
 
 // PRODUCT MANAGEMENT
 const addForm = document.getElementById("addProductForm");
-addForm.addEventListener("submit", e=>{
-  e.preventDefault();
+addForm.addEventListener("submit", e => {
+  e.preventDefault(); // Prevent the default form submission behavior.
+
+  // Get all the form input elements
+  const productName = document.getElementById("productName");
+  const descriptionInput = document.getElementById("descriptionInput");
+  const categorySelect = document.getElementById("categorySelect");
+  const subcategorySelect = document.getElementById("subcategorySelect");
+  const colorsInput = document.getElementById("colorsInput");
+  const sizesInput = document.getElementById("sizesInput");
+  const priceInput = document.getElementById("priceInput");
+  const stockInput = document.getElementById("stockInput");
   const fileInput = document.getElementById("imageFileInput");
   const urlInput = document.getElementById("imageURLInput").value.trim();
   const editingIndex = document.getElementById("editingIndex").value;
 
-  async function finalizeSave(imageData){
+  // Basic validation to make sure required fields are not empty
+  if (!productName.value || !categorySelect.value || !subcategorySelect.value || !priceInput.value || !stockInput.value) {
+    alert("Please fill in all the required fields.");
+    return;
+  }
+
+  async function finalizeSave(imageData) {
     const productData = {
       name: productName.value,
       description: descriptionInput.value.trim(),
       category: categorySelect.value,
       subcategory: subcategorySelect.value,
-      colors: colorsInput.value.split(",").map(c=>c.trim()).filter(Boolean),
-      sizes: sizesInput.value.split(",").map(s=>s.trim()).filter(Boolean),
+      colors: colorsInput.value.split(",").map(c => c.trim()).filter(Boolean),
+      sizes: sizesInput.value.split(",").map(s => s.trim()).filter(Boolean),
       price: Number(priceInput.value),
       stock: Number(stockInput.value),
       image: imageData || ""
     };
 
-    if(editingIndex){
-      await updateDoc(doc(db,"products",editingIndex), productData);
+    if (editingIndex) {
+      await updateDoc(doc(db, "products", editingIndex), productData);
     } else {
-      await addDoc(collection(db,"products"), productData);
+      await addDoc(collection(db, "products"), productData);
     }
 
     addForm.reset();
-    editingIndex.value="";
+    editingIndex.value = "";
     renderProductsTable();
   }
 
-  if(fileInput.files && fileInput.files[0]){
+  // Handle image file upload or use the URL
+  if (fileInput.files && fileInput.files[0]) {
     compressImage(fileInput.files[0]).then(finalizeSave);
   } else {
     finalizeSave(urlInput);
   }
 });
+
 
 // RENDER PRODUCTS
 async function renderProductsTable(){
@@ -507,3 +525,4 @@ logoutBtn.addEventListener("click", async () => {
 </script>
 </body>
 </html>
+
